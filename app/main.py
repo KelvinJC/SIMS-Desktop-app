@@ -11,7 +11,7 @@ import os
 from PIL import ImageTk, Image
 
 from dashboard import Dashboard
-from db_sims_sqlite import Database
+from model.db_sims_sqlite import Database
 db = Database('new_single_user3.db')
 
 class SIMSApp(tk.Tk):

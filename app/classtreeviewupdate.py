@@ -4,7 +4,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import datetime
 
-from db_sims_sqlite import Database
+from model.db_sims_sqlite import Database
 db = Database('new_single_user3.db')
 
 class ClassTreeviewII(tk.Frame):

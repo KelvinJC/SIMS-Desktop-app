@@ -9,7 +9,7 @@ Created on Thu Feb 17 15:13:04 2022
 import tkinter as tk
 from tkinter import ttk
 
-from db_sims_sqlite import Database
+from model.db_sims_sqlite import Database
 db = Database('new_single_user3.db')
 
 class Filter(tk.Frame):

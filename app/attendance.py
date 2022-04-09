@@ -21,7 +21,7 @@ import datetime
 
 
 from widget import Filter
-from db_sims_sqlite import Database
+from model.db_sims_sqlite import Database
 db = Database('new_single_user3.db')
 
 # Attendance and PresentButton objects communicate with each other. 

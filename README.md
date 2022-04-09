@@ -59,7 +59,7 @@ Select "Add/Edit Students" tab to add students individually.
 <br>
 
 ### Database ERD
-![](images/sims%20ERD.jpg)
+![](images/sims_ERD.png)
 ### Languages
 * Python, SQL
 

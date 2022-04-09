@@ -1,14 +1,17 @@
 # SIMS
 
-### A secure desktop app designed for use by a high school teacher to manage students' records.
+### A secure PC app designed for use by a high school teacher to manage students' records.
 
-### This application is a Graphical User Interface (GUI) with an embedded database. With it, a user can store records such as scores and attendance logs.
+### This application is a Graphical User Interface (GUI) with an embedded database. With it, the user can keep track of the academic performance of students by storing assessment scores and class attendance logs.
 ### The app also aids the teacher by computing students' total scores from input grades and determining the respective positions of each student in a class.
 <br>
 
 ## Features:
+* ### Available offline (works without an internet connection).
 * ### Registration and login.
-* ### PC integration with user's directories to allow import of lists of students from existing Excel spreadsheets or CSV files.
+* ### Storage of academic records
+* ### Class attendance log
+* ### Integration with user's PC directories to allow import of lists of students from existing Excel spreadsheets or CSV files.
 * ### Notepad for preparing and saving lesson notes. Notes can be exported to MS Word.
 * ### Timetable: a daily outline of classes to be taught. 
 <br>
@@ -63,6 +66,7 @@ Select "Add/Edit Students" tab to add students individually.
 ### Libraries:
 * Tkinter
 * SQLite3
+* Numpy
 * Pandas
 * OS
 * PIL

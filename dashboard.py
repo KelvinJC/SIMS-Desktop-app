@@ -12,8 +12,10 @@ from tkinter import ttk, filedialog
 from navbar import NavBar
 from coursetreeview import CourseTreeview
 from navbar_assess import NavBarAssessment
-from assessments import CreateAssessment, AssessmentTreeview, AssessmentCombined
+from assessments import AssessmentTreeview, AssessmentCombined
 from attendance import Attendance
+from chart import Chart
+from widget import Filter
 
 
 class Dashboard(tk.Frame):
@@ -82,7 +84,7 @@ class Dashboard(tk.Frame):
         menubar.add_cascade(label="Analytics", menu=analyticsMenu)
         # Options analytics items
         analyticsMenu.add_command(label="Student", command=self.our_command)
-        analyticsMenu.add_command(label="Class", command=self.our_command)
+        analyticsMenu.add_command(label="Class", command=lambda: self.open_charts())
         analyticsMenu.add_command(label="Course", command=self.our_command)
         
         # Create Attendance menu
@@ -146,6 +148,13 @@ class Dashboard(tk.Frame):
         for widget in self.winfo_children():
             widget.destroy()
         attendance_frame = Attendance(self)
+        
+    def open_charts(self):
+        for widget in self.winfo_children():
+            widget.destroy()
+        self.navbar = NavBar(self)
+        charts_page = Chart(self)
+        
         
        
   

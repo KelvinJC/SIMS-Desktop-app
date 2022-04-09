@@ -19,6 +19,7 @@ class SIMSApp(tk.Tk):
 
         tk.Tk.__init__(self, *args, *kwargs)
         tk.Tk.wm_title(self, 'School Information Management System')
+        tk.Tk.state(self, 'zoomed') # Maximise the app window from get go
         #tk.Tk.iconbitmap(self, default='png-to-ico.ico')
         # Make the app window fill the screen. To account for different PC screens. 
         # TBD: a fix needed because app screen doesn't maximise on loading.
@@ -140,7 +141,9 @@ class SignUp(tk.Frame):
         self.username_entry = tk.Entry(self, textvariable=self.temp_username, font=('Helvetica', 18), width=30, fg="#336d92", bd=0)
         self.password_entry = tk.Entry(self, textvariable=self.temp_password, show='*', font=('Helvetica', 18), width=30, fg="#336d92", bd=0)
         self.confirm_password_entry = tk.Entry(self, textvariable=self.temp_confirm_password, show='*', font=('Helvetica', 18), width=30, fg="#336d92", bd=0)
-
+        # Create event binding: Bind confirm_password_entry to <Return> and register function
+        self.confirm_password_entry.bind('<Return>', self.register)
+        
         # Add buttons
         sign_up_button=tk.Button(self, text='CREATE ACCOUNT', font=('Calibri', 12, 'bold'), width=48, height=2,
                           command=self.register)
@@ -224,7 +227,8 @@ class Login(tk.Frame):
         # Add entry
         self.username_entry1 = tk.Entry(self, textvariable=self.temp_login_name, font=('Helvetica', 18), width=30, fg="#336d92", bd=0)
         self.password_entry1 = tk.Entry(self, textvariable=self.temp_login_password, show='*', font=('Helvetica', 18), width=30, fg="#336d92", bd=0)
-
+        # Create event binding: Bind password_entry1 to <Return> and login_check function
+        self.password_entry1.bind('<Return>', self.login_check)
         # Buttons
         login_button = tk.Button(self, text = 'SIGN IN', font=('Calibri', 12, 'bold'), width=48, height=2,
                             command= lambda : controller.show_frame(Dashboard) if self.verify_login() == 1 else messagebox.showerror('', 'Login Unsuccessful.'))#self.verify_login)

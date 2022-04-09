@@ -20,17 +20,17 @@ class UploadStudentTreeview(tk.Frame):
     def __init__(self, parent): # I doubt this root arg is required
         tk.Frame.__init__(self, parent, bg = '#f3f3f4')
         self.pack(side='right', fill='both', expand=True)
- 
+
         # Add Search Box (Rememeber to implement 'Search' showing in bar )
         search_box = tk.Entry(self, width=60)
         search_box.pack(pady=4, padx=2, anchor=tk.NE)
-        
+
         # Add some style
         style = ttk.Style()
         # Pick a theme
         #style.theme_use("default")
         # Configure our treeview colours
-        style.configure("Treeview", 
+        style.configure("Treeview",
                         background="#D3D3D3",
                         foreground="black",
                         rowheight=20,
@@ -39,8 +39,8 @@ class UploadStudentTreeview(tk.Frame):
         # Change selected colour
         style.map('Treeview',
                   background=[('selected', '#73c2fb')]) #a4bce9
-        
-        
+
+
         # Create Treeview Frame
         tree_frame = tk.Frame(self)
         tree_frame.pack(fill=tk.X, anchor=tk.N, padx=(20,0))
@@ -48,7 +48,7 @@ class UploadStudentTreeview(tk.Frame):
         # Treeview Scrollbar
         tree_scroll = tk.Scrollbar(tree_frame)
         tree_scroll.pack(side=tk.RIGHT, fill=tk.Y, pady=(2,0))
-        
+
         # Create Treeview
         self.my_tree = ttk.Treeview(tree_frame, yscrollcommand=tree_scroll.set, selectmode='extended', height=25)
         # Pack to the screen
@@ -56,49 +56,49 @@ class UploadStudentTreeview(tk.Frame):
 
         # Configure scrollbar
         tree_scroll.config(command=self.my_tree.yview)
-        
+
         # Define our columns
         self.my_tree['columns'] = ('ID', 'First name', 'Last name', 'Gender')
-        
+
         # Format our columns
         self.my_tree.column("#0", width=0, stretch=tk.NO)
         self.my_tree.column("ID", anchor=tk.CENTER, stretch=tk.NO, width=0)
         self.my_tree.column("First name", anchor=tk.W, width=200)
         self.my_tree.column("Last name", anchor=tk.W, width=200)
         self.my_tree.column("Gender", anchor=tk.W, width=800)
-        
+
         # Create Column headings
         self.my_tree.heading("#0", text="", anchor=tk.W)
         self.my_tree.heading("ID", text="ID", anchor=tk.CENTER)
         self.my_tree.heading("First name", text="First name", anchor=tk.W)
         self.my_tree.heading("Last name", text="Last name", anchor=tk.W)
         self.my_tree.heading("Gender", text="Gender", anchor=tk.W)
-        
+
         # Create striped Treeview rows
         self.my_tree.tag_configure("oddrow", background="white")
-        self.my_tree.tag_configure("evenrow", background="#f3f3f4")    
-               
+        self.my_tree.tag_configure("evenrow", background="#f3f3f4")
+
         # Bind the treeview
         self.my_tree.bind ("<ButtonRelease-1>", self.select_record)
-        
+
         # Add Label Frame for dropdowns and buttons
         button_frame = tk.LabelFrame(self, text="Upload list", bg='white')
         button_frame.pack(fill='x', expand='yes', padx=(20, 17))
-        
+
         # Create class select string variable
         self.class_select = tk.StringVar()
         self.class_select.set('Select Class')
         # Initiate class_list variable
-        class_list = ['Select Class'] 
+        class_list = ['Select Class']
         # Get list of classes from database
         db_fetch_class_list = [class_pick[1] for class_pick in db.fetch_class()]
-        # Concatenate both lists 
+        # Concatenate both lists
         class_list += db_fetch_class_list
         # Create dropdown menu of classes
         class_dropdown_menu = ttk.OptionMenu(button_frame, self.class_select, *class_list)
         class_dropdown_menu.grid(row=0, column=1, padx=10, pady=10)
-        
-        
+
+
         upload_button = ttk.Button(button_frame, text="Upload", command=lambda: self.read_student_list_from_excel())
         upload_button.grid(row=0, column=3, padx=10, pady=10)
 
@@ -107,16 +107,16 @@ class UploadStudentTreeview(tk.Frame):
 
         move_down_button = ttk.Button(button_frame, text="Move Down", command=self.down)
         move_down_button.grid(row=0, column=5, padx=20, pady=10)
-        
+
         save_button = ttk.Button(button_frame, text="Save", command=lambda: self.save_student_list_to_db())
         save_button.grid(row=0, column=6, padx=10, pady=10)
-        
+
 
     def select_record(self, event):
         '''
-        Selects a row of records on the treeview. Usually for the purpose of sending row contents to entry boxes.     
-        
-        Parameters 
+        Selects a row of records on the treeview. Usually for the purpose of sending row contents to entry boxes.
+
+        Parameters
         ----------
         event : The selection of a row on the treeview by mouse.
 
@@ -129,7 +129,7 @@ class UploadStudentTreeview(tk.Frame):
         selected =self.my_tree.focus()
         # Grab record values
         values =self.my_tree.item(selected, 'values')
-        
+
     def remove_record(self):
         # Grab record
         selected =self.my_tree.focus()
@@ -142,11 +142,11 @@ class UploadStudentTreeview(tk.Frame):
         # Clear Treeview
         for record in self.my_tree.get_children():
             self.my_tree.delete(record)
-        # Populate treeview 
-        self.populate_treeview() 
+        # Populate treeview
+        self.populate_treeview()
 
     def read_student_list_from_excel(self):
-        ''' 
+        '''
         To open an excel file located in system memory and transfer its contents i.e. a table of students with columns first name, last name and gender
         into a treeview.
         '''
@@ -168,48 +168,48 @@ class UploadStudentTreeview(tk.Frame):
                 messagebox.showerror("File Error", "File could not be found... try again!")
             except UnboundLocalError: # To handle "local variable 'df' referenced before assignment"
                 pass
-        
-        # Clear old treeview        
+
+        # Clear old treeview
         self.clear_tree()
-        
+
         # Create new treeview
         # Define our columns
         self.my_tree['columns'] = ('First name', 'Last name', 'Gender')
-        
+
         # Format our columns
         self.my_tree.column("#0", width=0, stretch=tk.NO)
         #self.my_tree.column("ID", anchor=tk.CENTER, stretch=tk.NO, width=0)
         self.my_tree.column("First name", anchor=tk.W, width=200)
         self.my_tree.column("Last name", anchor=tk.W, width=200)
         self.my_tree.column("Gender", anchor=tk.W, width=1000)
-        
+
         # Create Column headings
         self.my_tree.heading("#0", text="", anchor=tk.W)
         #self.my_tree.heading("ID", text="ID", anchor=tk.CENTER)
         self.my_tree.heading("First name", text="First name", anchor=tk.W)
         self.my_tree.heading("Last name", text="Last name", anchor=tk.W)
         self.my_tree.heading("Gender", text="Gender", anchor=tk.W)
-        
+
         # Create striped Treeview rows
         self.my_tree.tag_configure("oddrow", background="white")
         self.my_tree.tag_configure("evenrow", background="#f3f3f4")
-        
+
         # Loop through column list
         self.count = 0
-        for column in self.my_tree["columns"]:      
-            # Put data in treeview
+        for column in self.my_tree["columns"]:
+            # Put data in treeview after converting each dataframe row to a list
             self.df_rows = df.to_numpy().tolist()
         for row in self.df_rows:
             if self.count % 2 == 0:
                 # Insert records into treeview rows
-               self.my_tree.insert(parent="", index="end", iid=self.count, values=(row), tags=("evenrow",)) 
+               self.my_tree.insert(parent="", index="end", iid=self.count, values=(row), tags=("evenrow",))
             else:
                self.my_tree.insert(parent="", index="end", iid=self.count, values=(row), tags=("oddrow",))
             self.count += 1
-    
+
     def save_student_list_to_db(self):
         '''
-        Save each student's data in the student table of database. 
+        Save each student's data in the student table of database.
         Returns
         -------
         None.
@@ -227,21 +227,20 @@ class UploadStudentTreeview(tk.Frame):
             messagebox.showerror("Data Error", "Data in a column is missing. Please check and try again")
         except: # To handle sqlite.3 Integrity error "NOT NULL constraint failed"
             messagebox.showerror("Data Error", "Data in a column is missing. Please check and try again")
-    
+
     def clear_tree(self):
         # Clear tree currently in view
-        self.my_tree.delete(*self.my_tree.get_children())    
-    
+        self.my_tree.delete(*self.my_tree.get_children())
+
     # For fun I guess
     # Move Row Up
     def up(self):
         rows = self.my_tree.selection()
         for row in rows:
           self.my_tree.move(row, self.my_tree.parent(row), self.my_tree.index(row)-1)
-            
+
     # Move Row Down
     def down(self):
         rows = self.my_tree.selection()
         for row in reversed(rows):
            self.my_tree.move(row,self.my_tree.parent(row),self.my_tree.index(row)+1)
-    

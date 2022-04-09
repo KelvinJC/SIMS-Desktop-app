@@ -8,8 +8,8 @@ Created on Tue Jan 18 08:55:41 2022
 import tkinter as tk
 from tkinter import ttk
 
-from assessments import CreateAssessment, AssessmentTreeview, AssessmentCombined
-
+from assessments import AssessmentTreeview, AssessmentCombined
+from widget import Filter
 
 class NavBarAssessment(tk.Frame):
     def __init__(self, parent): 
@@ -36,7 +36,10 @@ class NavBarAssessment(tk.Frame):
         nav_button.grid(row=4, column=0, sticky=tk.W, padx=10, pady=10)
         nav_button=tk.Button(self, text='Notes', width=20, anchor=tk.W, fg='white', font=("Calibri", 12, 'bold'), bg='#394552', bd=0,
                           command=lambda: self.our_command)
-        nav_button.grid(row=5, column=0, sticky=tk.W, padx=10)
+        nav_button.grid(row=5, column=0, sticky=tk.W, padx=10, pady=10)
+        nav_button=tk.Button(self, text='Reports', width=20, anchor=tk.W, fg='white', font=("Calibri", 12, 'bold'), bg='#394552', bd=0,
+                          command=lambda: self.our_command)
+        nav_button.grid(row=6, column=0, sticky=tk.W, padx=10, pady=10)
             
     def show_assessments(self):
         '''
@@ -65,7 +68,7 @@ class NavBarAssessment(tk.Frame):
         # Use of in operator instead of == operator as caution against prior observation that when a course/class was selected, 
         # clicking on create assessments reloaded the frame
         
-        if '.!frame.!dashboard.!createassessment' in str(self.parent.winfo_children()[1]): 
+        if '.!frame.!dashboard.!filter' in str(self.parent.winfo_children()[1]): 
             return
         else:
             for widget in self.parent.winfo_children():
@@ -73,7 +76,7 @@ class NavBarAssessment(tk.Frame):
                     # Clear all widgets off screen
                     widget.destroy()
             # Create 'create_assessment' frame as an attribute of navbar's parent object i.e Dashboard
-            self.parent.create_frame = CreateAssessment(self.parent)
+            self.parent.filter_frame = Filter(self.parent)
             self.parent.treeview = AssessmentTreeview(self.parent)
             # Remove searchbox
             #self.parent.treeview.search_box.destroy()

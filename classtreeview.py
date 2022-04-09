@@ -134,9 +134,9 @@ class ClassTreeview(tk.Frame):
                 # Insert students as child rows of each class.
                for rec in db.fetch_students_in_class(record[1]):
                    if self.count_child_row % 2 == 0:
-                       self.my_tree.insert(parent=self.count, index="end", iid=self.count_child_row, values=('', '', student_roll_index, rec[0], rec[1]), tags=("oddrow",))
+                       self.my_tree.insert(parent=self.count, index="end", iid=self.count_child_row, values=('', '', student_roll_index, rec[1], rec[2]), tags=("oddrow",))
                    else:
-                       self.my_tree.insert(parent=self.count, index="end", iid=self.count_child_row, values=('', '', student_roll_index, rec[0], rec[1]), tags=("evenrow",))
+                       self.my_tree.insert(parent=self.count, index="end", iid=self.count_child_row, values=('', '', student_roll_index, rec[1], rec[2]), tags=("evenrow",))
                    self.count_child_row += 1
                    student_roll_index += 1
             else:
@@ -145,9 +145,9 @@ class ClassTreeview(tk.Frame):
                # Insert students as child rows of each class.
                for rec in db.fetch_students_in_class(record[1]):
                    if self.count_child_row % 2 == 0:
-                       self.my_tree.insert(parent=self.count, index="end", iid=self.count_child_row, values=('', '', student_roll_index, rec[0], rec[1]), tags=("evenrow",))
+                       self.my_tree.insert(parent=self.count, index="end", iid=self.count_child_row, values=('', '', student_roll_index, rec[1], rec[2]), tags=("evenrow",))
                    else:
-                       self.my_tree.insert(parent=self.count, index="end", iid=self.count_child_row, values=('', '', student_roll_index, rec[0], rec[1]), tags=("oddrow",))
+                       self.my_tree.insert(parent=self.count, index="end", iid=self.count_child_row, values=('', '', student_roll_index, rec[1], rec[2]), tags=("oddrow",))
                    self.count_child_row += 1 
                    student_roll_index += 1
                          

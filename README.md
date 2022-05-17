@@ -15,19 +15,19 @@
 
 ## Usage:
 * Open app  
-![](images/sims%20intro.jpg)
+![](app/images/sims%20intro.jpg)
 
 * Sign up  
 Click "Sign Up" to navigate to sign up page.  
 Enter username and password (password entered twice for validation).
 Click "Create Account"
-![](images/signup.jpg)
+![](app/images/signup.jpg)
 
 
 * Login  
 After sign up is complete, navigate to login page.
 Enter name and password.
-![](images/login.jpg)
+![](app/images/login.jpg)
 
 
 * Add courses  
@@ -37,26 +37,26 @@ A navigation bar and file menu are on the page for access to other functionaliti
 Here, user can add the various courses she teaches.  
 Enter one course at a time and its course code (if applicable) in their respective entry boxes. Click on "Add Record".  
 If there is any error in the record, select the course in the display window, edit it in entry box. Then click "Update Record".
-![](images/mycourses.jpg)
+![](app/images/mycourses.jpg)
 
 
 * Add classes  
 Select "My Classes" tab on navigation bar.  
 Enter class and click on "Add Record"
-![](images/myclasses.jpg)
+![](app/images/myclasses.jpg)
 
 
 * Add students  
 Select "Add/Edit Students" tab to add students individually.
-![](images/addstudents.jpg)
+![](app/images/addstudents.jpg)
 
 * Select "Upload Students" to import excel spreadsheet containing students' records. (List must have 3 columns- first name, last name and gender)  
-![](images/uploadstudents.jpg)
+![](app/images/uploadstudents.jpg)
 
 <br>
 
 ### Database ERD
-![](images/sims_ERD.png)
+![](app/images/sims_ERD.png)
 ### Languages
 * Python, SQL
 

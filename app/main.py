@@ -9,11 +9,11 @@ import tkinter as tk
 from auth import StartPage, SignUp, Login
 from views.dashboard import Dashboard
 
-class CADE(tk.Tk):
+class SIMSApp(tk.Tk):
     def __init__(self, *args, **kwargs):
 
         tk.Tk.__init__(self, *args, *kwargs)
-        tk.Tk.wm_title(self, 'Cade')
+        tk.Tk.wm_title(self, 'SIMSApp')
         tk.Tk.state(self, 'zoomed') # Maximise the app window from get go
         #tk.Tk.iconbitmap(self, default='png-to-ico.ico')
         # Make the app window fill the screen. To account for different PC screens.

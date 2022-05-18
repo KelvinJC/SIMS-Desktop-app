@@ -58,6 +58,6 @@ class SIMSApp(tk.Tk):
 # That green. #2da44e
 
 # Create an instance of the class SIMSApp and assign it to a variable app
-app = CADE()
+app = SIMSApp()
 # Call the mainloop method on app to keep it running in a continuous loop
 app.mainloop()

@@ -29,7 +29,11 @@ class Dashboard(tk.Frame):
 
         self.controller = controller
         self.parent = parent
+        self.show_menuboard()
 
+    def show_menuboard(self):
+        for widget in self.winfo_children():
+            widget.destroy()
         holder_frame = tk.Frame(self)
         holder_frame.pack(side='top', fill='both', expand=True)
 
@@ -128,12 +132,7 @@ class Dashboard(tk.Frame):
         self.name = file_data[0].title()
         return self.name
 
-    def menubar(self, root):
-        # Just so this frame doesn't show a menu bar
-        menubar = tk.Menu(root)
-        return(menubar)
-
-    def ex_menubar(self, controller):
+    def menubar(self, controller):
         menubar = tk.Menu(controller)
 
         # Create a menu item (Set tearoff  to false to disable detachable submenu)
@@ -155,9 +154,12 @@ class Dashboard(tk.Frame):
         optionsMenu= tk.Menu(menubar, tearoff=False)
         menubar.add_cascade(label="Options", menu=optionsMenu)
         # Options menu items
-        optionsMenu.add_command(label="Add new course", command=self.our_command)
-        optionsMenu.add_command(label="Add lecture notes", command=self.our_command)
-        optionsMenu.add_command(label="View list", command=self.our_command)
+        optionsMenu.add_command(label="My Notes", command=self.our_command)
+        optionsMenu.add_command(label="My Calendar", command=lambda: self.open_calendar())
+        optionsMenu.add_command(label="Reports", command=lambda: self.open_courses())
+        optionsMenu.add_command(label="Grade book", command=lambda: self.open_assessments())
+        optionsMenu.add_command(label="Notifications", command=self.our_command)
+        optionsMenu.add_command(label="Menu", command=lambda: self.show_menuboard())
 
         # Create Subjects to be able to come back here
         subjectMenu = tk.Menu(menubar, tearoff=False)# To be deleted soon

@@ -58,7 +58,7 @@ class NavBarAssessment(tk.Frame):
                     widget.destroy()
             # Create assess frame and assessment treeview as attributes of navbar's parent object i.e Dashboard
             self.parent.assess_frame = AssessmentCombined(self.parent)
-            self.parent.treeview = AssessmentTreeview(self.parent)
+            self.parent.treeview = Assessments(self.parent)
 
     def create_assessment(self):
         '''
@@ -77,7 +77,7 @@ class NavBarAssessment(tk.Frame):
                     widget.destroy()
             # Create 'create_assessment' frame as an attribute of navbar's parent object i.e Dashboard
             #self.parent.filter_frame = Filter(self.parent)
-            self.parent.treeview = AssessmentTreeview(self.parent)
+            self.parent.treeview = Assessments(self.parent)
             # Remove searchbox
             #self.parent.treeview.search_box.destroy()
             # Override tree_frame pack function. Polymorphism. Ha!
